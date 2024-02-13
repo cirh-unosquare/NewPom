@@ -23,13 +23,22 @@ namespace NewPom.PageObjects
             wait = new WebDriverWait(this.driver, TimeSpan.FromSeconds(10));
         }
 
-        public void search(string product)
+        public void showSearchBar()
         {
+            wait.Until(SeleniumExtras.WaitHelpers.ExpectedConditions.ElementToBeClickable(searchButton));
             driver.FindElement(searchButton).Click();
-            wait.Until(SeleniumExtras.WaitHelpers.ExpectedConditions.ElementToBeClickable(searchBarInput));
-            driver.FindElement(searchBarInput).Clear();
-            driver.FindElement(searchBarInput).SendKeys(product);
-            driver.FindElement(searchBarInput).SendKeys(Keys.Enter);
+        }
+
+        public void clickOnSearchButton()
+        {
+            wait.Until(SeleniumExtras.WaitHelpers.ExpectedConditions.ElementToBeClickable(searchButton));
+            driver.FindElement(searchButton).Click();
+        }
+
+        public void type(string anything)
+        {
+            wait.Until(SeleniumExtras.WaitHelpers.ExpectedConditions.ElementIsVisible(searchBarInput));
+            driver.FindElement(searchBarInput).SendKeys(anything);
         }
 
     }

@@ -23,7 +23,9 @@ public class Tests
     public void MicrosoftSearchTest()
     {
         driver.Navigate().GoToUrl("https://www.microsoft.com/en-us/");
-        homePage.search("xbox");
+        homePage.showSearchBar();
+        homePage.type("xbox");
+        homePage.clickOnSearchButton();
         Assert.IsTrue(searchPage.getPageUrl().Contains("xbox"));
         searchPage.cancelLanguageWindow();
     }
